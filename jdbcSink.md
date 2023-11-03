@@ -22,7 +22,7 @@ Supporting document for youtube video
 ```shell
 bin/zookeeper-server-start.sh config/zookeeper.properties 
 bin/kafka-server-start.sh config/server.properties
-bin/kafka-topics.sh --create --topic test-topic --bootstrap-server localhost:9092
+bin/kafka-topics.sh --create --topic jdbc-sink-topic --bootstrap-server localhost:9092
 ```
 2. Start Mysql
 ```shell
@@ -65,7 +65,9 @@ bin/connect-standalone.sh config/connect-standalone.properties /{PATH}/confluent
 6. Push Json Message in Kafka topic by Kafka console producer providing by Confluent
 ```shell
 
-kafka-json-schema-console-producer --bootstrap-server 192.168.1.5:9092  --property schema.registry.url=http://localhost:8081 --topic test-topic --propey value.schema='{"type":"object", "properties":{"id":{"type":"number"},"name":{"type":"string"} }}'
+kafka-json-schema-console-producer --bootstrap-server 192.168.1.5:9092  \
+--property schema.registry.url=http://localhost:8081 --topic jdbc-sink-topic \
+--property value.schema='{"type":"object", "properties":{"id":{"type":"string"},"name":{"type":"string"} }}'
 ```
 
 ```shell
