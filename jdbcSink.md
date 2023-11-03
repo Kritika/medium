@@ -55,17 +55,17 @@ key.converter=org.apache.kafka.connect.storage.StringConverter
 key.converter.schemas.enable=true
 ```
 
+5. Place mysql connector jar in confluentinc-kafka-connect-jdbc-10.7.4/lib folder
 
-
-5. Start JDBC sink in Standalone mode
+6. Start JDBC sink in Standalone mode
 ```shell
 bin/connect-standalone.sh config/connect-standalone.properties /{PATH}/confluentinc-kafka-connect-jdbc-10.7.4/etc/sink-quickstart-sqlite.properties 
 ```
 
-6. Push Json Message in Kafka topic by Kafka console producer providing by Confluent
+7. Push Json Message in Kafka topic by Kafka console producer providing by Confluent
 ```shell
 
-kafka-json-schema-console-producer --bootstrap-server 192.168.1.5:9092  \
+kafka-json-schema-console-producer --bootstrap-server host.docker.internal:9092  \
 --property schema.registry.url=http://localhost:8081 --topic jdbc-sink-topic \
 --property value.schema='{"type":"object", "properties":{"id":{"type":"string"},"name":{"type":"string"} }}'
 ```
@@ -73,4 +73,4 @@ kafka-json-schema-console-producer --bootstrap-server 192.168.1.5:9092  \
 ```shell
 { "id":1, "name":"kritika" }
 ```
-7. Check My Sql db , you will have an entry
+8. Check My Sql db , you will have an entry
