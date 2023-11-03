@@ -22,6 +22,7 @@ Supporting document for youtube video
 ```shell
 bin/zookeeper-server-start.sh config/zookeeper.properties 
 bin/kafka-server-start.sh config/server.properties
+bin/kafka-topics.sh --create --topic test-topic --bootstrap-server localhost:9092
 ```
 2. Start Mysql
 ```shell
