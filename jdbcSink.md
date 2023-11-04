@@ -57,12 +57,14 @@ key.converter.schemas.enable=true
 
 5. Place mysql connector jar in confluentinc-kafka-connect-jdbc-10.7.4/lib folder
 
-6. Start JDBC sink in Standalone mode
+6. Start JDBC sink in Standalone mode.
 ```shell
 bin/connect-standalone.sh config/connect-standalone.properties /{PATH}/confluentinc-kafka-connect-jdbc-10.7.4/etc/sink-quickstart-sqlite.properties 
 ```
 
-7. Push Json Message in Kafka topic by Kafka console producer providing by Confluent
+7. Push Json Message in Kafka topic by Kafka console producer providing by Confluent. Schema will automatically created and 
+default strategy used in TopicRecordNameStrategy
+
 ```shell
 
 kafka-json-schema-console-producer --bootstrap-server host.docker.internal:9092  \
@@ -72,5 +74,8 @@ kafka-json-schema-console-producer --bootstrap-server host.docker.internal:9092 
 
 ```shell
 { "id":1, "name":"kritika" }
+```
+```shell
+curl --location --request GET 'http://localhost:8081/schemas/'
 ```
 8. Check My Sql db , you will have an entry
